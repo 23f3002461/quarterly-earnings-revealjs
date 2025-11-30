@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quarterly Earnings — Interactive RevealJS</title>
+
+    <!-- RevealJS styles (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css" id="theme">
+
+    <!-- Highlight.js stylesheet for code highlighting (used by RevealHighlight plugin) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/default.min.css">
+
+    <style>
+      /* Small custom styles */
+      .reveal .slides section.title-slide { text-align: center; }
+      .email { font-size: 0.9rem; opacity: 0.9; }
+      .chart-placeholder { width: 80%; height: 240px; margin: 0.5rem auto; border-radius: 8px; border: 1px dashed #ccc; display:flex;align-items:center;justify-content:center }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Title slide (includes the requested email) -->
+        <section class="title-slide">
+          <h1>Quarterly Earnings Report</h1>
+          <h3>Interactive presentation for stakeholders</h3>
+          <p class="email">Contact: <a href="mailto:23f3002461@ds.study.iitm.ac.in">23f3002461@ds.study.iitm.ac.in</a></p>
+          <aside class="notes">Introduce yourself, agenda, and highlight that this deck contains live demos and speaker notes.</aside>
+        </section>
+
+        <!-- Markdown slide (uses Reveal's Markdown support) -->
+        <section data-markdown>
+          <textarea data-template>
+
+## Highlights — Q[Quarter]
+
+- Revenue: **up 6.2%** vs prior quarter
+- Net Income: **down 1.1%** (one-off settlement)
+- Operating Margin: **stable at 18.5%**
+
+---
+
+## Actions & Focus
+
+1. Cost optimisation initiatives
+2. Accelerate digital transformation
+3. Client retention programs
+
+          </textarea>
+          <aside class="notes">While this slide is visible, expand on each bullet with examples and point to the live demo slides next.</aside>
+        </section>
+
+        <!-- Fragment animation example -->
+        <section>
+          <h2>Key Drivers</h2>
+          <ul>
+            <li class="fragment">Increased sales in APAC region</li>
+            <li class="fragment">Lowered operational expenses (automation)</li>
+            <li class="fragment fade-up">One-off litigation expense (non-recurring)</li>
+          </ul>
+          <aside class="notes">Use fragments to reveal each point. Pause between fragments for emphasis.</aside>
+        </section>
+
+        <!-- Code sample with syntax highlighting -->
+        <section>
+          <h2>Data Pipeline Snippet (Python)</h2>
+          <pre><code class="python"># Load quarterly data and compute growth
+import pandas as pd
+
+def compute_qoq_growth(df):
+    df = df.sort_values(['region','quarter'])
+    df['rev_lag'] = df.groupby('region').revenue.shift(1)
+    df['qoq_growth'] = (df.revenue - df.rev_lag) / df.rev_lag
+    return df
+
+# Example usage
+# df = pd.read_csv('quarterly.csv')
+# df = compute_qoq_growth(df)
+</code></pre>
+          <aside class="notes">Explain data validation, assumptions (currency, adjustments), and where this code runs in the pipeline.</aside>
+        </section>
+
+        <!-- Math slide with financial formula -->
+        <section>
+          <h2>Financial Formula</h2>
+          <p>Present value of expected cash flows (DCF):</p>
+          <p>\[PV = \sum_{t=1}^{T} \frac{CF_t}{(1 + r)^t} + \frac{TV}{(1+r)^T}\]</p>
+          <aside class="notes">Explain discount rate (r), cash flows (CF_t), and terminal value (TV). Mention sensitivity analysis for r.</aside>
+        </section>
+
+        <!-- Simple interactive placeholder (could integrate D3/Observable later) -->
+        <section id="chart-slide">
+          <h2>Revenue by Region</h2>
+          <div class="chart-placeholder fragment">(Interactive chart placeholder — load D3/Plot here)</div>
+          <aside class="notes">On this slide, demo a live chart. If offline, walk through the static chart points and what they imply.</aside>
+        </section>
+
+        <!-- Slide with fragments showing a small step-by-step flow -->
+        <section>
+          <h2>Quarterly Review Flow</h2>
+          <div>
+            <img class="fragment" src="https://via.placeholder.com/600x100?text=Data+Ingestion" alt="step1" />
+            <img class="fragment" src="https://via.placeholder.com/600x100?text=Validation+&+Adjustments" alt="step2" />
+            <img class="fragment" src="https://via.placeholder.com/600x100?text=Reporting+&+Distribution" alt="step3" />
+          </div>
+          <aside class="notes">Walk through how data flows from source to report distribution. Mention validations and sign-offs.</aside>
+        </section>
+
+        <!-- Closing slide with publication note -->
+        <section>
+          <h2>Published & Shareable</h2>
+          <p>This presentation is ready to be published to GitHub Pages — see publishing steps in presenter's notes.</p>
+          <aside class="notes">Tell stakeholders where to find the live deck and how to request edits. Share the GitHub Pages URL (see instructions).</aside>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- RevealJS and plugins (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/markdown/markdown.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/highlight/highlight.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/math/math.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/notes/notes.esm.js"></script>
+
+    <script>
+      // Initialize Reveal with common options
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        margin: 0.04,
+        controls: true,
+        progress: true,
+        history: true,
+        autoSlide: 0,
+        transition: 'slide',
+        plugins: [ RevealMarkdown, RevealHighlight, RevealMath, RevealNotes ]
+      });
+
+      // Example: lazy-load a simple chart when slide becomes active
+      Reveal.on('slidechanged', function(event) {
+        if (event.currentSlide && event.currentSlide.id === 'chart-slide') {
+          // This is where you'd trigger a chart rendering function such as updateChart(data)
+          // For security/portability this file contains a placeholder only.
+          console.log('Chart slide active — initialize chart here');
+        }
+      });
+    </script>
+  </body>
+</html>
