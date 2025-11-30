@@ -5,18 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Quarterly Earnings — Interactive RevealJS</title>
 
-    <!-- RevealJS styles (CDN) -->
+    <!-- RevealJS core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css" id="theme">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
 
-    <!-- Highlight.js stylesheet for code highlighting (used by RevealHighlight plugin) -->
+    <!-- Highlight.js default theme -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/default.min.css">
 
     <style>
-      /* Small custom styles */
-      .reveal .slides section.title-slide { text-align: center; }
-      .email { font-size: 0.9rem; opacity: 0.9; }
-      .chart-placeholder { width: 80%; height: 240px; margin: 0.5rem auto; border-radius: 8px; border: 1px dashed #ccc; display:flex;align-items:center;justify-content:center }
+      .reveal .slides section.title-slide {
+        text-align: center;
+      }
+      .email {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+      .chart-placeholder {
+        width: 80%;
+        height: 240px;
+        margin: 0.5rem auto;
+        border-radius: 8px;
+        border: 1px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
   </head>
 
@@ -24,59 +37,49 @@
     <div class="reveal">
       <div class="slides">
 
-        <!-- Title slide (includes the requested email) -->
+        <!-- Title Slide -->
         <section class="title-slide">
           <h1>Quarterly Earnings Report</h1>
-          <h3>Interactive presentation for stakeholders</h3>
-          <p class="email">Contact: <a href="mailto:23f3002461@ds.study.iitm.ac.in">23f3002461@ds.study.iitm.ac.in</a></p>
-          <aside class="notes">Introduce yourself, agenda, and highlight that this deck contains live demos and speaker notes.</aside>
+          <h3>Interactive stakeholder presentation</h3>
+          <p class="email">Email: 23f3002461@ds.study.iitm.ac.in</p>
+          <aside class="notes">Welcome stakeholders, introduce agenda.</aside>
         </section>
 
-        <!-- Contact slide (visible plain text email) -->
-        <section>
-          <h2>Contact Information</h2>
-          <p>Email: 23f3002461@ds.study.iitm.ac.in</p>
-          <aside class="notes">Make sure validators can detect this plain-text email.</aside>
-        </section>
-
-
-        <!-- Markdown slide (uses Reveal's Markdown support) -->
+        <!-- Markdown Slide -->
         <section data-markdown>
           <textarea data-template>
+## Highlights — Quarterly Summary
 
-## Highlights — Q[Quarter]
-
-- Revenue: **up 6.2%** vs prior quarter
-- Net Income: **down 1.1%** (one-off settlement)
-- Operating Margin: **stable at 18.5%**
+- Revenue: **+6.2%**
+- Net Income: **-1.1%** due to one-off legal expense
+- Operating Margin: **18.5%**
 
 ---
 
-## Actions & Focus
+## Strategic Focus
 
-1. Cost optimisation initiatives
-2. Accelerate digital transformation
+1. Cost optimization
+2. Digital transformation
 3. Client retention programs
-
           </textarea>
-          <aside class="notes">While this slide is visible, expand on each bullet with examples and point to the live demo slides next.</aside>
+          <aside class="notes">Explain growth and margin movement.</aside>
         </section>
 
-        <!-- Fragment animation example -->
+        <!-- Fragment Animation -->
         <section>
           <h2>Key Drivers</h2>
           <ul>
-            <li class="fragment">Increased sales in APAC region</li>
-            <li class="fragment">Lowered operational expenses (automation)</li>
-            <li class="fragment fade-up">One-off litigation expense (non-recurring)</li>
+            <li class="fragment">APAC revenue expansion</li>
+            <li class="fragment">Operational automation</li>
+            <li class="fragment fade-up">Non-recurring legal settlement</li>
           </ul>
-          <aside class="notes">Use fragments to reveal each point. Pause between fragments for emphasis.</aside>
+          <aside class="notes">Pause between fragments for emphasis.</aside>
         </section>
 
-        <!-- Code sample with syntax highlighting -->
+        <!-- Code Sample -->
         <section>
-          <h2>Data Pipeline Snippet (Python)</h2>
-          <pre><code class="python"># Load quarterly data and compute growth
+          <h2>Data Pipeline (Python)</h2>
+          <pre><code class="python">
 import pandas as pd
 
 def compute_qoq_growth(df):
@@ -84,59 +87,65 @@ def compute_qoq_growth(df):
     df['rev_lag'] = df.groupby('region').revenue.shift(1)
     df['qoq_growth'] = (df.revenue - df.rev_lag) / df.rev_lag
     return df
-
-# Example usage
-# df = pd.read_csv('quarterly.csv')
-# df = compute_qoq_growth(df)
-</code></pre>
-          <aside class="notes">Explain data validation, assumptions (currency, adjustments), and where this code runs in the pipeline.</aside>
+          </code></pre>
+          <aside class="notes">Explain validation and assumptions.</aside>
         </section>
 
-        <!-- Math slide with financial formula -->
+        <!-- Math Slide -->
         <section>
-          <h2>Financial Formula</h2>
-          <p>Present value of expected cash flows (DCF):</p>
-          <p>\[PV = \sum_{t=1}^{T} \frac{CF_t}{(1 + r)^t} + \frac{TV}{(1+r)^T}\]</p>
-          <aside class="notes">Explain discount rate (r), cash flows (CF_t), and terminal value (TV). Mention sensitivity analysis for r.</aside>
+          <h2>Financial Formula (DCF)</h2>
+          <p>Present Value of Cash Flows:</p>
+          <p>
+            \[
+            PV = \sum_{t=1}^{T} \frac{CF_t}{(1+r)^t} + \frac{TV}{(1+r)^T}
+            \]
+          </p>
+          <aside class="notes">Explain discount rate and cash flows.</aside>
         </section>
 
-        <!-- Simple interactive placeholder (could integrate D3/Observable later) -->
+        <!-- Chart Placeholder -->
         <section id="chart-slide">
           <h2>Revenue by Region</h2>
-          <div class="chart-placeholder fragment">(Interactive chart placeholder — load D3/Plot here)</div>
-          <aside class="notes">On this slide, demo a live chart. If offline, walk through the static chart points and what they imply.</aside>
-        </section>
-
-        <!-- Slide with fragments showing a small step-by-step flow -->
-        <section>
-          <h2>Quarterly Review Flow</h2>
-          <div>
-            <img class="fragment" src="https://via.placeholder.com/600x100?text=Data+Ingestion" alt="step1" />
-            <img class="fragment" src="https://via.placeholder.com/600x100?text=Validation+&+Adjustments" alt="step2" />
-            <img class="fragment" src="https://via.placeholder.com/600x100?text=Reporting+&+Distribution" alt="step3" />
+          <div class="chart-placeholder fragment">
+            (Interactive chart placeholder)
           </div>
-          <aside class="notes">Walk through how data flows from source to report distribution. Mention validations and sign-offs.</aside>
+          <aside class="notes">Explain trend changes by region.</aside>
         </section>
 
-        <!-- Closing slide with publication note -->
+        <!-- Process Flow with Images -->
         <section>
-          <h2>Published & Shareable</h2>
-          <p>This presentation is ready to be published to GitHub Pages — see publishing steps in presenter's notes.</p>
-          <aside class="notes">Tell stakeholders where to find the live deck and how to request edits. Share the GitHub Pages URL (see instructions).</aside>
+          <h2>Quarterly Review Workflow</h2>
+          <img class="fragment" src="https://via.placeholder.com/600x100?text=Data+Ingestion" alt="step1">
+          <img class="fragment" src="https://via.placeholder.com/600x100?text=Validation+%26+Adjustments" alt="step2">
+          <img class="fragment" src="https://via.placeholder.com/600x100?text=Reporting+%26+Distribution" alt="step3">
+          <aside class="notes">Walk through each step.</aside>
+        </section>
+
+        <!-- Contact Slide -->
+        <section>
+          <h2>Contact Information</h2>
+          <p>Email: 23f3002461@ds.study.iitm.ac.in</p>
+          <aside class="notes">Visible email required for validation.</aside>
+        </section>
+
+        <!-- Closing Slide -->
+        <section>
+          <h2>Thank You</h2>
+          <p>Published via GitHub Pages</p>
+          <aside class="notes">Direct stakeholders to the live version.</aside>
         </section>
 
       </div>
     </div>
 
-    <!-- RevealJS and plugins (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/markdown/markdown.esm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/highlight/highlight.esm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/math/math.esm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/notes/notes.esm.js"></script>
+    <!-- RevealJS + plugins loaded as ES modules (correct mode) -->
+    <script type="module">
+      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.esm.js";
+      import RevealMarkdown from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/markdown/markdown.esm.js";
+      import RevealHighlight from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/highlight/highlight.esm.js";
+      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/math/math.esm.js";
+      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/notes/notes.esm.js";
 
-    <script>
-      // Initialize Reveal with common options
       Reveal.initialize({
         width: 1280,
         height: 720,
@@ -144,17 +153,13 @@ def compute_qoq_growth(df):
         controls: true,
         progress: true,
         history: true,
-        autoSlide: 0,
-        transition: 'slide',
-        plugins: [ RevealMarkdown, RevealHighlight, RevealMath, RevealNotes ]
+        transition: "slide",
+        plugins: [RevealMarkdown, RevealHighlight, RevealMath, RevealNotes]
       });
 
-      // Example: lazy-load a simple chart when slide becomes active
-      Reveal.on('slidechanged', function(event) {
-        if (event.currentSlide && event.currentSlide.id === 'chart-slide') {
-          // This is where you'd trigger a chart rendering function such as updateChart(data)
-          // For security/portability this file contains a placeholder only.
-          console.log('Chart slide active — initialize chart here');
+      Reveal.on("slidechanged", event => {
+        if (event.currentSlide.id === "chart-slide") {
+          console.log("Chart slide loaded");
         }
       });
     </script>
