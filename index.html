@@ -29,7 +29,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        background: #f5f5f5;
+        font-size: 1.2rem;
+        color: #666;
       }
+      .workflow-box {
+        width: 600px;
+        height: 100px;
+        margin: 10px auto;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+      }
+      .step1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+      .step2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+      .step3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
     </style>
   </head>
 
@@ -107,17 +125,17 @@ def compute_qoq_growth(df):
         <section id="chart-slide">
           <h2>Revenue by Region</h2>
           <div class="chart-placeholder fragment">
-            (Interactive chart placeholder)
+            Interactive Chart Placeholder
           </div>
           <aside class="notes">Explain trend changes by region.</aside>
         </section>
 
-        <!-- Process Flow with Images -->
+        <!-- Process Flow with CSS Boxes -->
         <section>
           <h2>Quarterly Review Workflow</h2>
-          <img class="fragment" src="https://via.placeholder.com/600x100?text=Data+Ingestion" alt="step1">
-          <img class="fragment" src="https://via.placeholder.com/600x100?text=Validation+%26+Adjustments" alt="step2">
-          <img class="fragment" src="https://via.placeholder.com/600x100?text=Reporting+%26+Distribution" alt="step3">
+          <div class="workflow-box step1 fragment">Data Ingestion</div>
+          <div class="workflow-box step2 fragment">Validation & Adjustments</div>
+          <div class="workflow-box step3 fragment">Reporting & Distribution</div>
           <aside class="notes">Walk through each step.</aside>
         </section>
 
@@ -138,14 +156,14 @@ def compute_qoq_growth(df):
       </div>
     </div>
 
-    <!-- RevealJS + plugins loaded as ES modules (correct mode) -->
-    <script type="module">
-      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.esm.js";
-      import RevealMarkdown from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/markdown/markdown.esm.js";
-      import RevealHighlight from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/highlight/highlight.esm.js";
-      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/math/math.esm.js";
-      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/plugin/notes/notes.esm.js";
+    <!-- RevealJS + plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
 
+    <script>
       Reveal.initialize({
         width: 1280,
         height: 720,
